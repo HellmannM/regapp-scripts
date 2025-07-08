@@ -36,11 +36,11 @@ check_version() {
     current_version=$(eval "$installed_version")
 
     if ! version_ge "$current_version" "$min_version"; then
-        echo "Found $name $current_version but $min_version or newer is required."
+        echo "ERROR: found $name $current_version but $min_version or newer is required."
         error=1
+    else
+        echo "found $name $current_version (>= $min_version)"
     fi
-
-    echo "found $name $current_version (>= $min_version)"
 }
 
 echo "Checking dependencies..."
@@ -55,7 +55,7 @@ check "java" "17.0.0" "java -version 2>&1 | awk -F '\"' '/version/ {print \$2}'"
 check "mvn" "3.8.0" "mvn --version | awk '/Apache Maven/ {print \$3}'" "Maven"
 
 # Postgres
-check "postgres" "9.0" "mvn --version | awk '/Apache Maven/ {print \$3}'" "PostgreSQL"
+check "postgres" "9.0" "postgres --version | awk '{ match(\$3, /^[0-9]+(\.[0-9]+)?/, v); print v[0] }'" "PostgreSQL"
 
 # xmlstarlet
 check "xmlstarlet"

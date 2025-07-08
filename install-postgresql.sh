@@ -28,3 +28,7 @@ sudo -u postgres env LD_LIBRARY_PATH=/opt/pgsql/lib:$LD_LIBRARY_PATH "$INSTALL_P
 #sudo chown postgres:postgres /var/run/postgresql
 #sudo -u postgres "$INSTALL_PREFIX/bin/pg_ctl" -D "$PGDATA" restart
 
+echo "# pgsql" >> ~/.bashrc
+echo "PATH='$INSTALL_PREFIX/bin${PATH:+:${PATH}}'" >> ~/.bashrc
+echo "LIBRARY_PATH='$INSTALL_PREFIX/lib${LIBRARY_PATH:+:${LIBRARY_PATH}}'" >> ~/.bashrc
+echo "LD_LIBRARY_PATH='$INSTALL_PREFIX/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}'" >> ~/.bashrc
