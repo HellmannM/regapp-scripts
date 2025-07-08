@@ -19,6 +19,12 @@ sudo chown -R postgres "$PGDATA"
 sudo chown -R postgres "$LOG"
 sudo -u postgres "$INSTALL_PREFIX/bin/initdb" -D "$PGDATA"
 sudo -u postgres "$INSTALL_PREFIX/bin/pg_ctl" -D "$PGDATA" -l "$LOG/logfile" start
-sudo -u postgres "$INSTALL_PREFIX/bin/createdb" test
-sudo -u postgres "$INSTALL_PREFIX/bin/psql" test
+sudo -u postgres "$INSTALL_PREFIX/bin/createdb" -h /tmp test
+sudo -u postgres env LD_LIBRARY_PATH=/opt/pgsql/lib:$LD_LIBRARY_PATH "$INSTALL_PREFIX/bin/psql" -h /tmp test
+
+#TODO alternatively set unix socket dir
+#echo "unix_socket_directories = '/var/run/postgresql'" >> "$PGDATA/postgresql.conf"
+#sudo mkdir -p /var/run/postgresql
+#sudo chown postgres:postgres /var/run/postgresql
+#sudo -u postgres "$INSTALL_PREFIX/bin/pg_ctl" -D "$PGDATA" restart
 
