@@ -22,9 +22,8 @@ mvn clean package
 popd
 
 ## Setup postgres (create empty database) #####################################
-su postgres
-createuser -P regapp-user
-createdb -O regapp-user regapp
+sudo -u postgres createuser -P regapp-user
+sudo -u postgres createdb -O regapp-user regapp
 exit
 
 ## Configure app server #######################################################
