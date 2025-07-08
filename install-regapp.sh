@@ -3,7 +3,7 @@
 SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 ## Check deps #################################################################
-source SCRIPTS_DIR/check-dependencies.sh
+source "$SCRIPTS_DIR/check-dependencies.sh"
 
 ## Build RegApp ###############################################################
 # clone repo
