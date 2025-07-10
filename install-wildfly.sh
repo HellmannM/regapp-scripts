@@ -17,6 +17,6 @@ sudo chown -R wildfly:wildfly /opt/wildfly
 
 # add to bashrc
 echo "Adding '$BOTH' to PATH in ~/.bashrc"
-echo "# wildfly" >> ~/.bashrc
-echo "PATH='$BOTH/bin${PATH:+:${PATH}}'" >> ~/.bashrc
+echo "\n# wildfly" >> ~/.bashrc
+echo "PATH=\"$BOTH\${PATH:+:\${PATH}}\"" >> ~/.bashrc
 
