@@ -26,7 +26,3 @@ sudo -u postgres createuser -P regapp-user
 sudo -u postgres createdb -O regapp-user regapp
 exit
 
-## Configure app server #######################################################
-source SCRIPTS_DIR/init-standalone-full-ha-xml.sh
-
-

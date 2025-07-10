@@ -1,5 +1,20 @@
 
-## Values used in modified standalone-full-ha.xml
+## Check LDAP path in module.xml
+- /opt/wildfly/latest/modules/system/layers/base/sun/jdk/main/module.xml
+    add "<path name="com/sun/jndi/ldap/ext"/>"
+
+
+## Deploy JDBC4 compliant driver
+$ standalone.sh &
+$ jboss-cli.sh --connect
+$ deploy /usr/share/java/postgresql-jdbc.jar
+$ quit
+
+
+## Start the server with own config
+$ standalone.sh -c standalone-full-ha.xml
+
+Values used in modified standalone-full-ha.xml
 - Datasource:
     db-host: localhost
     password: secret
@@ -8,19 +23,10 @@
     host: localhost (as mail relay)
     port: 25
 
-## Check LDAP path in module.xml
-- /opt/wildfly/latest/modules/system/layers/base/sun/jdk/main/module.xml
-    add "<path name="com/sun/jndi/ldap/ext"/>"
 
 #TODO
 # edit pg_hba.conf file to allow authentication via md5 for regapp-user from
 # your host, which is running the application.
-
-# Deploy JDBC4 compliant driver ###############################################
-#TODO
-#jboss-cli.sh --connect
-#deploy /usr/share/java/postgresql-jdbc4.jar
-#quit
 
 #TODO
 # consider enabling pool constraints and checking mechanisms. More detailed

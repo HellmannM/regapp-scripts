@@ -142,7 +142,7 @@
                 </datasource>
                 <datasource jndi-name="java:/ds/bwidmDS" pool-name="bwidmDS" enabled="true" use-java-context="true">
                     <connection-url>jdbc:postgresql://localhost:5432/bwidm</connection-url>
-                    <driver>postgresql-jdbc4.jar</driver>
+                    <driver>postgresql</driver>
                     <security>
                         <user-name>bwidm-user</user-name>
                         <password>secret</password>
