@@ -140,13 +140,16 @@
                     <driver>h2</driver>
                     <security user-name="sa" password="sa"/>
                 </datasource>
-                <datasource jndi-name="java:/ds/bwidmDS" pool-name="bwidmDS" enabled="true" use-java-context="true">
-                    <connection-url>jdbc:postgresql://localhost:5432/bwidm</connection-url>
-                    <driver>postgresql</driver>
-                    <security>
-                        <user-name>bwidm-user</user-name>
-                        <password>secret</password>
-                    </security>
+                <datasource jndi-name="java:/ds/bwidmDS" pool-name="bwidmDS">
+                    <connection-url>jdbc:postgresql://localhost:5432/regapp</connection-url>
+                    <driver-class>org.postgresql.Driver</driver-class>
+                    <driver>postgresql-jdbc.jar</driver>
+                    <security user-name="regapp-user" password="regapp"/>
+                    <validation>
+                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"/>
+                        <validate-on-match>true</validate-on-match>
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"/>
+                    </validation>
                 </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
@@ -553,16 +556,8 @@
                 <connection-factory name="InVmConnectionFactory" entries="java:/ConnectionFactory" connectors="in-vm"/>
                 <connection-factory name="RemoteConnectionFactory" entries="java:jboss/exported/jms/RemoteConnectionFactory" connectors="http-connector" ha="true" block-on-acknowledge="true" reconnect-attempts="-1"/>
                 <pooled-connection-factory name="activemq-ra" entries="java:/JmsXA java:jboss/DefaultJMSConnectionFactory" connectors="in-vm" transaction="xa"/>
-                <jms-destinations>
-                    <jms-queue name="bwIdmMailQueue">
-                        <entry name="queue/bwIdmMailQueue"/>
-                        <entry name="java:jboss/exported/jms/queue/bwIdmMailQueue"/>
-                    </jms-queue>
-                    <jms-queue name="bwIdmAsyncJobQueue">
-                        <entry name="queue/bwIdmAsyncJobQueue"/>
-                        <entry name="java:jboss/exported/jms/queue/bwIdmAsyncJobQueue"/>
-                    </jms-queue>
-                </jms-destinations>
+                <jms-queue name="bwIdmMailQueue" entries="queue/bwIdmMailQueue java:jboss/exported/jms/queue/bwIdmMailQueue"/>
+                <jms-queue name="bwIdmAsyncJobQueue" entries="queue/bwIdmAsyncJobQueue java:jboss/exported/jms/queue/bwIdmAsyncJobQueue"/>
             </server>
         </subsystem>
         <subsystem xmlns="urn:wildfly:metrics:1.0" security-enabled="false" exposed-subsystems="*" prefix="${wildfly.metrics.prefix:wildfly}"/>
@@ -682,4 +677,9 @@
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
     </socket-binding-group>
+    <deployments>
+        <deployment name="postgresql-jdbc.jar" runtime-name="postgresql-jdbc.jar">
+            <content sha1="3de2e3f19cb4bd260bc84b9279e5e37bd6818de1"/>
+        </deployment>
+    </deployments>
 </server>
