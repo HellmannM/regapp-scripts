@@ -9,8 +9,7 @@ $ cp regapp.xml /opt/wildfly/latest/standalone/configuration/regapp.xml
 $ standalone.sh -c regapp.xml
 
 ## Deploy JDBC4 compliant driver
-# already included in regapp.xml
-#$ jboss-cli.sh --connect --commands=deploy\ /usr/share/java/postgresql-jdbc.jar
+$ jboss-cli.sh --connect --commands=deploy\ /usr/share/java/postgresql-jdbc.jar
 
 Values used in modified standalone-full-ha.xml
 - Datasource:
@@ -25,10 +24,9 @@ Values used in modified standalone-full-ha.xml
 $ add-user.sh
 
 ## deploy app
-# already deployed in included regapp.xml
-#$ jboss-cli.sh --connect --command=deploy\ ./regapp/bwreg-webapp/target/bwreg-webapp-2.8.3.war
-#alternatvely manage in browser and navigate to
-#http://localhost:9990
+$ jboss-cli.sh --connect --command=deploy\ ./regapp/bwreg-ear/target/bwreg-2.8.3.ear
+alternatvely manage in browser and navigate to
+http://localhost:9990
 
 
 #TODO
@@ -40,3 +38,7 @@ $ add-user.sh
 # instructions on datasources can be found on the Wildfly homepage:
 # DataSource configuration
 # https://docs.wildfly.org/19/wildscribe/subsystem/datasources/index.html
+
+
+## access deployed app
+http://localhost:8080

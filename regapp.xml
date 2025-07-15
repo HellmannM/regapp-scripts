@@ -678,8 +678,5 @@
         </outbound-socket-binding>
     </socket-binding-group>
     <deployments>
-        <deployment name="postgresql-jdbc.jar" runtime-name="postgresql-jdbc.jar">
-            <content sha1="3de2e3f19cb4bd260bc84b9279e5e37bd6818de1"/>
-        </deployment>
     </deployments>
 </server>
