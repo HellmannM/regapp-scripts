@@ -14,6 +14,8 @@ pushd regapp
 git checkout "$(git describe --tags $(git rev-list --tags --max-count=1))"
 
 # build (needs internet connection)"
+#mvn clean install -DskipTests -Dmaven.repo.local=$PWD/install
+#mvn clean install -DskipTests #installs to ~/.m2
 mvn clean package
 
 # change profile if necessary with -P, e.g. `mvn -Ppord-wildfly clean package`

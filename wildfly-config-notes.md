@@ -4,15 +4,13 @@
     add "<path name="com/sun/jndi/ldap/ext"/>"
 
 
-## Deploy JDBC4 compliant driver
-$ standalone.sh &
-$ jboss-cli.sh --connect
-$ deploy /usr/share/java/postgresql-jdbc.jar
-$ quit
-
-
 ## Start the server with own config
-$ standalone.sh -c standalone-full-ha.xml
+$ cp regapp.xml /opt/wildfly/latest/standalone/configuration/regapp.xml
+$ standalone.sh -c regapp.xml
+
+## Deploy JDBC4 compliant driver
+# already included in regapp.xml
+#$ jboss-cli.sh --connect --commands=deploy\ /usr/share/java/postgresql-jdbc.jar
 
 Values used in modified standalone-full-ha.xml
 - Datasource:
@@ -22,6 +20,15 @@ Values used in modified standalone-full-ha.xml
 - Mail server:
     host: localhost (as mail relay)
     port: 25
+
+## add wildfly management user
+$ add-user.sh
+
+## deploy app
+# already deployed in included regapp.xml
+#$ jboss-cli.sh --connect --command=deploy\ ./regapp/bwreg-webapp/target/bwreg-webapp-2.8.3.war
+#alternatvely manage in browser and navigate to
+#http://localhost:9990
 
 
 #TODO
