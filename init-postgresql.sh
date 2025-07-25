@@ -21,3 +21,6 @@ sudo -u postgres pg_ctl -D "$PGDATA" -l "$LOG/logfile" start
 sudo -u postgres createdb -h /var/run/postgresql test
 sudo -u postgres psql -h /var/run/postgresql test
 
+# restart postgres
+#sudo -u postgres pg_ctl -D /home/postgres/db/data stop
+#sudo -u postgres pg_ctl -D "$PGDATA" -l "$LOG/logfile" start

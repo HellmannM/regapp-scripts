@@ -22,6 +22,8 @@ Values used in modified standalone-full-ha.xml
 
 ## add wildfly management user
 $ add-user.sh
+## add wildfly application user
+$ add-user.sh
 
 ## deploy app
 $ jboss-cli.sh --connect --command=deploy\ ./regapp/bwreg-ear/target/bwreg-2.8.3.ear
@@ -38,7 +40,6 @@ http://localhost:9990
 # instructions on datasources can be found on the Wildfly homepage:
 # DataSource configuration
 # https://docs.wildfly.org/19/wildscribe/subsystem/datasources/index.html
-
 
 ## access deployed app
 http://localhost:8080
