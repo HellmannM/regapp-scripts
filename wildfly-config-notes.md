@@ -6,7 +6,7 @@
 
 ## Start the server with own config
 $ cp regapp.xml /opt/wildfly/latest/standalone/configuration/regapp.xml
-$ standalone.sh -c regapp.xml
+$ JAVA_OPTS="-Xmx2G" standalone.sh -c regapp.xml
 
 ## Deploy JDBC4 compliant driver
 $ jboss-cli.sh --connect --commands=deploy\ /usr/share/java/postgresql-jdbc.jar
