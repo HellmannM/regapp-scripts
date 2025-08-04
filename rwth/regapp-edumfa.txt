@@ -1,0 +1,11 @@
+SQL-Resolver regapp
+Resolvername: regapp
+Treiber: postgresql+psycopg2
+Server: [ipv4]:5432
+Datenbank: regapp
+User: regapp
+Passwort:
+Tabelle: idty
+Begrenzung: 100
+Zuordnung: {"userid" : "twofa_user_id", "username" : "twofa_user_name"}
+
