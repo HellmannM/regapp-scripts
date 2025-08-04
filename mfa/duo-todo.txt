@@ -1,0 +1,19 @@
+- Implementierung von TwoFactorTokenManager schreiben, die mit Duo’s REST API spricht.
+- Cisco Duo Auth API bietet einfache HTTP-Endpunkte für Push, Passcode etc.
+  - auf der Duo-Webseite "Web SDK" Application erstellen und notieren:
+    - Integration Key
+    - Secret Key
+    - API Hostname (z. B. api-europe.duosecurity.com)
+
+
+script:
+var resolveConfig = function (scriptingEnv, configMap, identity, logger) {
+    configMap.put("integrationKey", "DEIN_INTEGRATION_KEY");
+    configMap.put("secretKey", "DEIN_SECRET_KEY");
+    //TODO add url
+    configMap.put("apiHostname", "api-XXXXX.duosecurity.com");
+    configMap.put("userId", identity.getTwoFaUserName());
+    // TODO: Neuer TokenManager für Cisco Duo
+    configMap.put("managerClass", "edu.kit.scc.webreg.service.twofa.duo.DuoTokenManager");
+};
+
