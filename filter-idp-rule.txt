@@ -1,0 +1,27 @@
+- create rule package
+    Package name:   edu.kit.scc.webreg.dools.saml
+    Knowledge base: entity-filter
+    Version:        1.0.0
+
+- create rule:
+    Name: filter-idps
+    Knowledge base: edu.kit.scc.webreg.dools.saml - entity-filter (1.0.0)
+    Rule type: DRL
+    Rule:
+package edu.kit.scc.webreg.dools.saml
+import org.opensaml.saml.saml2.metadata.EntityDescriptor;
+global org.slf4j.Logger logger;
+rule "remove all except"
+    when
+        $ed : EntityDescriptor(
+        		(entityID == "https://idp.rrz.uni-koeln.de/idp/shibboleth") ||
+        		(entityID == "https://login.rz.rwth-aachen.de/shibboleth")
+        		)
+    then
+    	logger.info( "remove ed {}", $ed.getEntityID() );
+    	retract( $ed );
+end
+
+- go to rule package and schedule reload
+- edit federation and apply rule, then poll
+
