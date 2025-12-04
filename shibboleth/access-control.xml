@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd">
+
+  <util:map id="shibboleth.AccessControlPolicies">
+
+    <!-- used by /idp/status and often other admin flows -->
+    <entry key="AccessByIPAddress">
+      <bean parent="shibboleth.IPRangeAccessControl">
+        <property name="allowedRanges">
+          <set>
+            <value>127.0.0.1/32</value>
+            <value>::1/128</value>
+          </set>
+        </property>
+      </bean>
+    </entry>
+
+    <!-- hello test page -->
+    <entry key="AccessByAdminUser">
+      <bean parent="shibboleth.IPRangeAccessControl">
+        <property name="allowedRanges">
+          <set>
+            <!-- the one docker assigned -->
+            <value>172.17.0.1/24</value>
+            <value>172.21.0.1/24</value>
+
+            <!-- common podman rootless host IP -->
+            <value>10.88.0.1/32</value>
+
+            <!-- local -->
+            <value>127.0.0.1/32</value>
+          </set>
+        </property>
+      </bean>
+    </entry>
+
+  </util:map>
+
+</beans>
+
