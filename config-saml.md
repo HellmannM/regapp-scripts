@@ -19,9 +19,9 @@ after testing:
 
 
 edit config:
-- Assertion Consumer Endpoint: "https://your-hostname/Shibboleth.sso/SAML2/POST"
-- ECP Endpoint: "https://your-hostname/Shibboleth.sso/SAML2/ECP"
-- add hostname
+- Assertion Consumer Endpoint: "/Shibboleth.sso/SAML2/POST"
+- ECP Endpoint: "/Shibboleth.sso/SAML2/ECP"
+- hostname: regapp.dev.local
 
 ### add IDPs
 list federations -> add federation
