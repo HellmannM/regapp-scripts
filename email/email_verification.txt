@@ -1,0 +1,18 @@
+Name:
+email_verification
+Von:
+hellmann@uni-koeln.de
+An:
+$user.email
+CC:
+
+BCC:
+
+???reply_to???:
+
+???signature_alias???:
+
+Betreff:
+RegApp E-Mail Verification
+Body:
+Dear Mr./Ms. $user.surName, please verify your e-mail address by entering the verification code $emailAddress.verificationToken Or just click this link: https://regapp.dev.local/user/email-addresses.xhtml?t=$emailAddress.verificationToken
