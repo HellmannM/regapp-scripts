@@ -143,6 +143,9 @@ services:
 docker compose -f ... up --build
 
 
-
+### QUARKUS http proxies
+docker network inspect saml-dev --format '{{ (index .IPAM.Config 0).Subnet }}'
+in docker-compose-dev.yml:
+ - QUARKUS_HTTP_PROXY_TRUSTED_PROXIES=172.21.0.0/16
 
 
